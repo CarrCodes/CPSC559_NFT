@@ -5,7 +5,7 @@ export const INFURA_ID = "564594288f0f4ea591fabfa1db988b1f "; // "460f40a260564a
 export const ETHERSCAN_KEY = "12ZSQ7PZVPAR8DUYSKPFNGMSCD49E7GGR4"; // "PSW8C433Q667DVEX5BCRMGNAH9FSGFZ7Q8";
 
 // BLOCKNATIVE ID FOR Notify.js:
-export const BLOCKNATIVE_DAPPID = "0b58206a-f3c0-4701-a62f-73c7243e8c77";
+export const BLOCKNATIVE_DAPPID = "a6b8a327-613f-427b-a118-3c1ee4d9cc30"; // "0b58206a-f3c0-4701-a62f-73c7243e8c77";
 
 export const NETWORKS = {
   localhost: {
@@ -50,7 +50,7 @@ export const NETWORKS = {
     name: "goerli",
     color: "#0975F6",
     chainId: 5,
-    gasPrice: 1000000000,
+    gasPrice: getGasPrice(), // 1000000000,
     faucet: "https://goerli-faucet.slock.it/",
     blockExplorer: "https://goerli.etherscan.io/",
     rpcUrl: `https://goerli.infura.io/v3/${INFURA_ID}`,
@@ -184,6 +184,19 @@ export const NETWORKS = {
     rpcUrl: `https://api.harmony.one`,
     gasPrice: 1000000000,
   },
+};
+
+function getGasPrice(speed) {
+    fetch('https://ethgasstation.info/api/ethgasAPI.json?')
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data[speed]) {
+        return data[speed];
+      } else {
+        return data['fast'];
+      }
+    });
 };
 
 export const NETWORK = chainId => {

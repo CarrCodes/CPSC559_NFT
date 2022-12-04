@@ -37,6 +37,25 @@ function mnemonic() {
   return "";
 }
 
+function getGasPrice(speed) {
+  try {
+    fetch('https://ethgasstation.info/api/ethgasAPI.json?')
+      .then((response) => {
+        return response.json();
+      })
+      .then((myJson) => {
+        console.log(myJson);
+      });
+    if (myJson[speed]) {
+      return myJson[speed];
+    } else {
+      return myJson['fast'];
+    }
+  } catch (e) {
+
+  }
+}
+
 module.exports = {
   defaultNetwork,
 
@@ -85,6 +104,7 @@ module.exports = {
     goerli: {
       url: "https://goerli.infura.io/v3/564594288f0f4ea591fabfa1db988b1f", // <---- YOUR INFURA ID! (or it won't work)
       //      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXXXX/eth/goerli", // <---- YOUR MORALIS ID! (not limited to infura)
+      gasPrice: getGasPrice(),
       accounts: {
         mnemonic: mnemonic(),
       },
