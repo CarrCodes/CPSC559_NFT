@@ -8,6 +8,8 @@
 
 ## Project Details
 
+**GitHub Repository:** [https://github.com/CarrCodes/CPSC559_NFT](https://github.com/CarrCodes/CPSC559_NFT)
+
 This project is based off of [scaffold-eth-challenges](https://github.com/scaffold-eth/scaffold-eth-challenges/tree/challenge-0-simple-nft)
 
 Improvements made include
